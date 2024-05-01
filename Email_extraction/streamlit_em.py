@@ -56,7 +56,7 @@ def get_domain(url):
 def scrape_all_pages(base_url, visited_urls=set(), details=[]):
     if base_url in visited_urls:
         return
-    service = Service("Email_extraction/chromedriver.exe")  # Update with the path to your chromedriver executable
+    service = Service("chromedriver.exe")  # Update with the path to your chromedriver executable
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
     driver = webdriver.Chrome(service=service, options=chrome_options)
