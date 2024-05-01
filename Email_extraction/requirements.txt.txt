@@ -1,5 +1,0 @@
-langchain
-streamlit
-selenium
-google-generativeai==0.5.2
-langchain_google_genai
