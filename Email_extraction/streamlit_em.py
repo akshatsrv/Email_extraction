@@ -11,6 +11,9 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains.summarize import load_summarize_chain
 from langchain import PromptTemplate
 from langchain.docstore.document import Document
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 # Function to extract email addresses from text
@@ -50,10 +53,16 @@ def get_domain(url):
 def scrape_all_pages(base_url, visited_urls=set(), details=[]):
     if base_url in visited_urls:
         return
-    service = Service("Email_extraction/chromedriver.exe")  # Update with the path to your chromedriver executable
+    # service = Service("Email_extraction/chromedriver.exe")  # Update with the path to your chromedriver executable
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver = webdriver.Chrome(
+            service=Service(
+                ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+            ),
+            options=options,
+        )
+    # driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.get(base_url)
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     emails, names = extract_emails_and_names(soup)
