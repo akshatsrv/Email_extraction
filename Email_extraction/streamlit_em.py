@@ -57,16 +57,13 @@ def scrape_all_pages(base_url, visited_urls=set(), details=[]):
     # service = Service("Email_extraction/chromedriver.exe")  # Update with the path to your chromedriver executable
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
-    # driver = webdriver.Chrome(
-    #         service=Service(
-    #             ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
-    #         ),
-    #         options=options,
-    #     )
+    options.add_argument("--disable-gpu")
     driver = webdriver.Chrome(
-        executable_path=ChromeDriverManager().install(),
-        options=chrome_options,
-    )
+            service=Service(
+                ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+            ),
+            options=options,
+        )
     
     # driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.get(base_url)
