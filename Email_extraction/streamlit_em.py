@@ -59,7 +59,7 @@ def scrape_all_pages(base_url, visited_urls=set(), details=[]):
     service = Service("chromedriver.exe")  # Update with the path to your chromedriver executable
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
-    driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()))
+    driver = webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.BRAVE).install())
     # driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.get(base_url)
     soup = BeautifulSoup(driver.page_source, 'html.parser')
