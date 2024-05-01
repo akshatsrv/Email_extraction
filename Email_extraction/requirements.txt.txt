@@ -1,0 +1,5 @@
+langchain
+streamlit
+selenium==4.20.0
+google-generativeai==0.5.2
+langchain_google_genai
