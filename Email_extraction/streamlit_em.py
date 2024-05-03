@@ -19,6 +19,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromiumService
 
 
+
 # Function to extract email addresses from text
 def extract_emails_and_names(soup):
     emails = set()
@@ -60,7 +61,8 @@ def scrape_all_pages(base_url, visited_urls=set(), details=[]):
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
     # driver = webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.BRAVE).install())
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    # driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.get(base_url)
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     emails, names = extract_emails_and_names(soup)
