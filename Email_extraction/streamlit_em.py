@@ -62,7 +62,7 @@ def scrape_all_pages(base_url, visited_urls=set(), details=[]):
     chrome_options.add_argument('--headless')
     # driver = webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.BRAVE).install())
     # driver = webdriver.Chrome(service=service, options=chrome_options)
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager(driver_version='123').install()))
     driver.get(base_url)
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     emails, names = extract_emails_and_names(soup)
